@@ -44,12 +44,14 @@ class _CreateEditItemScreenState extends State<CreateEditItemScreen> {
     super.dispose();
   }
 
-  void _saveItem() {
+    void _saveItem() {
     if (_formKey.currentState!.validate() && _selectedSdg != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(widget.isEditing ? 'Item updated!' : 'Item created!')),
       );
-      Navigator.pop(context); // Go back after saving
+      
+      // THIS pops the screen and goes back to wherever they came from (Admin Dashboard)
+      Navigator.pop(context); 
     } else if (_selectedSdg == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please select an SDG category')),
@@ -73,15 +75,15 @@ class _CreateEditItemScreenState extends State<CreateEditItemScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // container with boxdecoration
-              Container(
+               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xFF1C2341), // Dark card color
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.grey.shade300),
+                  border: Border.all(color: Colors.grey.shade800),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withOpacity(0.3),
                       blurRadius: 10,
                       offset: const Offset(0, 5),
                     ),

@@ -4,8 +4,16 @@ class Validators {
     if (value == null || value.trim().isEmpty) {
       return 'Email is required';
     }
+    
+    final cleanValue = value.trim().toLowerCase();
+    
+    // ✅ ALLOW 'admin' TO BYPASS THE EMAIL FORMAT CHECK
+    if (cleanValue == 'admin') {
+      return null; 
+    }
+
     final emailRegex = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w{2,}$');
-    if (!emailRegex.hasMatch(value.trim())) {
+    if (!emailRegex.hasMatch(cleanValue)) {
       return 'Enter a valid email (e.g., you@example.com)';
     }
     return null;
